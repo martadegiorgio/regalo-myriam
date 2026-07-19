@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caccia al tesoro della Dottoressa Myriam</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap');
+
+        /* TEMA ELEGANTE TORINO (Verde Acqua e Oro) */
+        :root {
+            --primary: #00897B;
+            /* Verde Acqua Elegante */
+            --light: #F2FAF9;
+            /* Sfondo grigio/verde chiarissimo */
+            --accent: #D4AF37;
+            /* Oro / Champagne per l'eleganza sabauda */
+            --text-dark: #2A3B39;
+            /* Testo scuro in tinta fredda */
+            --white: #ffffff;
+            --error: #A22C2C;
+            /* Rosso attenuato */
+            --success: #288C64;
+            /* Verde elegante */
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            background-color: var(--light);
+            color: var(--text-dark);
+            padding: 15px;
+            /* Padding ridotto per schermi piccoli (iPhone) */
+            margin: 0;
+            background-image: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            min-height: 100vh;
+            /* Prevenire lo scorrimento orizzontale su mobile */
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            /* Leggermente ridotto per non sbordare su iPhone */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            margin-top: 10px;
+        }
+
+        /* Contenitore responsive per il video YouTube (Cornice elegante) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            width: 95%;
+            max-width: 500px;
+            margin: 25px auto 40px auto;
+            background: #000;
+            /* Cornice classica, elegante e pulita a doppio filo d'oro */
+            border: 8px double var(--accent); 
+            border-radius: 8px; /* Curve morbide e moderne */
+            box-shadow: 0 12px 30px rgba(0, 137, 123, 0.15); /* Ombra morbida in tinta verde acqua */
+            box-sizing: border-box;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 25px 15px;
+            /* Adattato per iPhone */
+            border-radius: 16px;
+            /* Curve più morbide stile iOS */
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            margin: 0 auto 25px auto;
+            box-shadow: 0 8px 25px rgba(0, 137, 123, 0.1);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        input {
+            padding: 14px 15px;
+            /* Aumentato per facilitare il tocco su mobile */
+            font-size: 16px;
+            /* IMPORTANTE: min 16px evita lo zoom automatico su iOS */
+            width: 90%;
+            margin: 8px 0;
+            border: 1px solid #d1dfde;
+            border-radius: 8px;
+            /* Più arrotondato */
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            -webkit-appearance: none;
+            /* Rimuove lo stile default iOS */
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 5px rgba(0, 137, 123, 0.25);
+        }
+
+        button {
+            padding: 16px 20px;
+            /* Più alto per facilitare il click */
+            font-size: 16px;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            width: 90%;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 15px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            -webkit-appearance: none;
+        }
+
+        button:hover {
+            background-color: #006b5f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .success-msg {
+            padding: 20px 15px;
+            background-color: #F0F9F8;
+            border: 1px solid var(--primary);
+            border-left: 5px solid var(--primary);
+            color: var(--text-dark);
+            font-size: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Stile specifico per il messaggio finale */
+        #messaggio-finale .success-msg {
+            background-color: #FCFAF2;
+            border-color: var(--accent);
+            border-left: 5px solid var(--accent);
+            color: var(--text-dark);
+            font-size: 17px;
+        }
+
+        .mole-img {
+            max-width: 180px;
+            /* Un po' più piccola per schermi iPhone */
+            width: 100%;
+            height: auto;
+            margin: 20px auto 0 auto;
+            display: block;
+            animation: fadeIn 2s ease-in-out;
+            filter: drop-shadow(0px 8px 12px rgba(0, 137, 123, 0.2));
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #fase2,
+        #messaggio-finale {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Caccia al tesoro della Dottoressa Myriam🎓</h1>
+
+    <div class="video-container">
+        <!-- INSERIRE QUI IL LINK YOUTUBE. Sostituisci "ID_DEL_VIDEO" con il codice del tuo video -->
+        <iframe src="https://www.youtube.com/embed/ID_DEL_VIDEO" allowfullscreen></iframe>
+    </div>
+
+    <!-- FASE 1: L'indovinello iniziale -->
+    <div class="card" id="fase1">
+        <h3>Fase 1: L'Indovinello</h3>
+        <p>Guarda il video e inserisci la risposta qui:</p>
+        <input type="text" id="risposta1" placeholder="La tua risposta...">
+        <button onclick="sbloccaFase1()">Invia Risposta</button>
+        <div id="errore1" style="color: var(--error); display: none; margin-top: 10px; font-weight: bold;">Risposta
+            errata, riprova!</div>
+
+        <div id="successo1" class="success-msg" style="display: none;">
+            🎉 <strong>Accesso Consentito!</strong> 🎉<br><br>
+            Recati in Via Verdi e cerca qualcosa di verde. Guarda attentamente!
+        </div>
+    </div>
+
+    <!-- FASE 2: Le 3 Tappe (Si sblocca solo dopo la Fase 1) -->
+    <div class="card" id="fase2">
+        <h3>Fase 2: Le Password delle Tappe</h3>
+        <p>Raggiungi le tappe sulla mappa, supera le sfide e inserisci le 3 parole segrete:</p>
+
+        <input type="text" id="parola1" placeholder="Parola Tappa 1">
+        <input type="text" id="parola2" placeholder="Parola Tappa 2">
+        <input type="text" id="parola3" placeholder="Parola Tappa 3">
+
+        <button onclick="sbloccaFinale()">Sblocca il Tesoro</button>
+        <div id="errore2" style="color: var(--error); display: none; margin-top: 10px; font-weight: bold;">Attenzione:
+            una o più parole sono errate!</div>
+    </div>
+
+    <!-- IL MESSAGGIO FINALE -->
+    <div class="card" id="messaggio-finale">
+        <div class="success-msg">
+            🏆 <strong>MISSIONE COMPIUTA!</strong> 🏆<br><br>
+            Il tesoro ti aspetta qui:
+        </div>
+        <img src="mole.png" alt="Mole Antonelliana" class="mole-img"
+            onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Mole_Antonelliana_in_Turin.jpg/500px-Mole_Antonelliana_in_Turin.jpg'">
+    </div>
+
+    <script>
+        // Funzione per la prima parola (Video)
+        function sbloccaFase1() {
+            let risposta = document.getElementById("risposta1").value.toLowerCase().trim();
+
+            if (risposta.includes("verdi") || risposta.includes("rai") || risposta.includes("via verdi")) {
+                document.getElementById("errore1").style.display = "none";
+                document.getElementById("successo1").style.display = "block";
+                document.getElementById("fase2").style.display = "block";
+                document.getElementById("risposta1").disabled = true; // Blocca la casella una volta indovinato
+            } else {
+                document.getElementById("errore1").style.display = "block";
+            }
+        }
+
+        // Funzione per le 3 parole delle tappe fisiche
+        function sbloccaFinale() {
+            let p1 = document.getElementById("parola1").value.toLowerCase().trim();
+            let p2 = document.getElementById("parola2").value.toLowerCase().trim();
+            let p3 = document.getElementById("parola3").value.toLowerCase().trim();
+
+            // DA MODIFICARE IN SEGUITO: Inserite qui le 3 parole scelte con i ragazzi
+            let passwordTappa1 = "ansia";
+            let passwordTappa2 = "cfu";
+            let passwordTappa3 = "lode";
+
+            if (p1 === passwordTappa1 && p2 === passwordTappa2 && p3 === passwordTappa3) {
+                document.getElementById("errore2").style.display = "none";
+                document.getElementById("fase2").style.display = "none";
+                document.getElementById("messaggio-finale").style.display = "block";
+            } else {
+                document.getElementById("errore2").style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
