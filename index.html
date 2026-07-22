@@ -57,21 +57,21 @@
         }
 
         /* Contenitore responsive per il video YouTube (Cornice elegante) */
+        /* Contenitore responsive per YouTube Shorts (Video Verticale) */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 177.77%;
+            /* Proporzione 9:16 per gli Shorts */
             height: 0;
             overflow: hidden;
-            width: 95%;
-            max-width: 500px;
+            width: 90%;
+            max-width: 320px;
+            /* Più stretto per i video verticali, ottimo per iPhone */
             margin: 25px auto 40px auto;
             background: #000;
-            /* Cornice classica, elegante e pulita a doppio filo d'oro */
             border: 8px double var(--accent);
-            border-radius: 8px;
-            /* Curve morbide e moderne */
+            border-radius: 12px;
             box-shadow: 0 12px 30px rgba(0, 137, 123, 0.15);
-            /* Ombra morbida in tinta verde acqua */
             box-sizing: border-box;
         }
 
