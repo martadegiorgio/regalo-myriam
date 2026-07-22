@@ -56,22 +56,21 @@
             margin-top: 10px;
         }
 
-        /* Contenitore responsive per il video YouTube (Cornice elegante) */
-        /* Contenitore responsive per YouTube Shorts (Video Verticale) */
+        /* Contenitore per YouTube Shorts (Video Verticale 9:16) */
         .video-container {
             position: relative;
             padding-bottom: 177.77%;
-            /* Proporzione 9:16 per gli Shorts */
+            /* Proporzione esatta per video verticali */
             height: 0;
             overflow: hidden;
-            width: 90%;
-            max-width: 320px;
-            /* Più stretto per i video verticali, ottimo per iPhone */
+            width: 85%;
+            max-width: 350px;
             margin: 25px auto 40px auto;
             background: #000;
-            border: 8px double var(--accent);
-            border-radius: 12px;
-            box-shadow: 0 12px 30px rgba(0, 137, 123, 0.15);
+            border: 6px double var(--accent);
+            /* Cornice oro elegante */
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 137, 123, 0.2);
             box-sizing: border-box;
         }
 
@@ -82,6 +81,8 @@
             width: 100%;
             height: 100%;
             border: none;
+            border-radius: 10px;
+            /* Arrotonda anche il video dentro la cornice */
         }
 
         .card {
@@ -208,8 +209,18 @@
     <h1>Caccia al tesoro della Dottoressa Myriam🎓</h1>
 
     <div class="video-container">
-        <!-- INSERIRE QUI IL LINK YOUTUBE. Sostituisci "ID_DEL_VIDEO" con il codice del tuo video -->
-        <iframe src="https://www.youtube.com/embed/tnfM3_z7Qw8" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/tnfM3_z7Qw8?playsinline=1&rel=0" title="Videomessaggio per Myriam"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Link di backup per aprire il video direttamente nell'app YouTube o sul browser -->
+    <div style="margin-top: -25px; margin-bottom: 25px;">
+        <a href="https://www.youtube.com/shorts/tnfM3_z7Qw8" target="_blank" rel="noopener noreferrer" 
+           style="color: var(--primary); text-decoration: underline; font-weight: 600; font-size: 14px;">
+            🎬 Il video non parte? Clicca qui per vederlo direttamente su YouTube
+        </a>
     </div>
 
     <!-- FASE 1: L'indovinello iniziale -->
