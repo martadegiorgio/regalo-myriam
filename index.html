@@ -59,25 +59,20 @@
         /* Contenitore per YouTube Shorts (Video Verticale 9:16) */
         .video-container {
             position: relative;
-            padding-bottom: 177.77%;
-            /* Proporzione esatta per video verticali */
-            height: 0;
-            overflow: hidden;
-            width: 85%;
-            max-width: 350px;
-            margin: 25px auto 40px auto;
+            width: 90%;
+            max-width: 280px;
+            aspect-ratio: 9 / 16;
+            margin: 25px auto 35px auto;
             background: #000;
             border: 6px double var(--accent);
             /* Cornice oro elegante */
             border-radius: 16px;
             box-shadow: 0 12px 30px rgba(0, 137, 123, 0.2);
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             border: none;
